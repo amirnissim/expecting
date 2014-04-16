@@ -13,8 +13,10 @@
     inputDate: $('#inputDate'),
     targetDate: $('#targetDate'),
     output: $('#output'),
-    dueDate: $('#dueDate'),
-    calc: $('#calc')
+    outputMain: $('#outputMain'),
+    outputType: $('#outputType'),
+    outputSub: $('#outputSub'),
+    dueDate: $('#dueDate')
   };
 
   function init() {
@@ -23,8 +25,6 @@
 
     elements.inputDate.addEventListener('change', calc);
     elements.targetDate.addEventListener('change', calc);
-
-    elements.calc.addEventListener('click', calc);
   }
 
   function calc() {
@@ -36,20 +36,22 @@
 
     delta = (t2 - t1) / (oneDayInMs),
     weeks = parseInt(delta / 7),
-    days = delta % 7,
-    output = '';
+    days = delta % 7;
 
-    if (weeks) {
-      output += weeks + ' weeks'
-    }
-    if (days) {
-      output += ' ' + days + ' days'
+    elements.outputMain.textContent = weeks ? weeks : days;
+    elements.outputType.textContent = weeks ?
+                                      (weeks > 1 ? 'weeks' : 'week') :
+                                      (days > 1 ? 'days' : 'day');
+
+    elements.outputSub.textContent = '';
+    if (weeks && days) {
+      elements.outputSub.textContent = 'and {#days} days'.replace('{#days}', days);
     }
 
-    elements.output.textContent = 'You are ' + output + ' pregnant';
-    elements.dueDate.textContent = 'Due date is ' + dueDate.toISOString().split('T')[0];
+    elements.dueDate.textContent = '(due date is ' + dueDate.toLocaleDateString() + ')';
   }
 
   init();
+  calc();
 
 })();

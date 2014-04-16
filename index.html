@@ -2,31 +2,35 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title></title>
+  <meta name="viewport" content="width=device-width, user-scalable=no">
+
+  <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+  <link rel="icon" href="favicon.png" type="image/x-icon">
+  <link rel="stylesheet" href="main.css">
+
+  <title>Expecting</title>
 </head>
 <body>
   <section id="main">
-    <p>
-      <label for="inputDate">Conception date</label>
-      <input type="date" id="inputDate">
-    </p>
+    <div id="output">
+      <span id="outputMain"></span>
+      <span id="outputType"></span>
+      <span id="outputSub"></span>
+    </div>
 
-    <p>
-      <label for="targetDate">Target date</label>
-      <input type="date" id="targetDate">
-    </p>
+    <div id="dueDate"></div>
+  </section>
 
-    <p>
-      <button id="calc">calc</button>
-    </p>
+  <section id="footer">
+  <p>
+    <label for="inputDate">Conception date</label>
+    <input type="date" id="inputDate">
+  </p>
 
-    <p>
-      <div id="output"></div>
-    </p>
-
-    <p>
-      <div id="dueDate"></div>
-    </p>
+  <p>
+    <label for="targetDate">Target date</label>
+    <input type="date" id="targetDate">
+  </p>
   </section>
 
   <script src="main.js"></script>
