@@ -20,10 +20,13 @@
   };
 
   function init() {
-    elements.inputDate.value = '2014-01-05';
+    elements.inputDate.value = localStorage['inputDate'] || '2014-01-05';
     elements.targetDate.value = now.toISOString().split('T')[0];
 
-    elements.inputDate.addEventListener('change', calc);
+    elements.inputDate.addEventListener('change', function() {
+      localStorage['inputDate'] = this.value;
+      calc();
+    });
     elements.targetDate.addEventListener('change', calc);
   }
 
@@ -45,10 +48,12 @@
 
     elements.outputSub.textContent = '';
     if (weeks && days) {
-      elements.outputSub.textContent = 'and {#days} days'.replace('{#days}', days);
+      elements.outputSub.textContent =
+        'and {#days} days'.replace('{#days}', days);
     }
 
-    elements.dueDate.textContent = '(due date is ' + dueDate.toLocaleDateString() + ')';
+    elements.dueDate.textContent =
+      '(due date is ' + dueDate.toLocaleDateString() + ')';
   }
 
   init();
