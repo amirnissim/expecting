@@ -35,3 +35,19 @@ section:first-child {
 #dueDate {
   font-size: 0.9rem;
 }
+
+/* hide ugly input[date] elements on mobile and tablets */
+@media screen and (min-width: 768px) {
+  .mobile-only {
+    display: none;
+  }
+}
+@media screen and (max-width: 768px) {
+  input[type="date"] {
+    position: absolute;
+    top: -100px;
+  }
+  .mobile-only {
+    display: inline;
+  }
+}

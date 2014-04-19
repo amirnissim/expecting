@@ -11,7 +11,11 @@
   pregnancyInWeeks = 40, // weeks
   elements = {
     inputDate: $('#inputDate'),
+    inputDisplay: $('#inputDisplay'),
+
     targetDate: $('#targetDate'),
+    targetDisplay: $('#targetDisplay'),
+
     output: $('#output'),
     outputMain: $('#outputMain'),
     outputType: $('#outputType'),
@@ -19,15 +23,26 @@
     dueDate: $('#dueDate')
   };
 
-  function init() {
-    elements.inputDate.value = localStorage['inputDate'] || '2014-01-05';
-    elements.targetDate.value = now.toISOString().split('T')[0];
+  function initDate(input, display) {
+    display.addEventListener('click', function() {
+      input.focus();
+    });
 
-    elements.inputDate.addEventListener('change', function() {
-      localStorage['inputDate'] = this.value;
+    input.addEventListener('change', function() {
+      display.textContent = localStorage[input.id] = input.value;
       calc();
     });
-    elements.targetDate.addEventListener('change', calc);
+  }
+
+  function init() {
+    initDate(elements.inputDate, elements.inputDisplay);
+    initDate(elements.targetDate, elements.targetDisplay);
+
+    elements.inputDate.value = elements.inputDisplay.textContent =
+      localStorage['inputDate'] || '2014-01-05';
+
+    elements.targetDate.value = elements.targetDisplay.textContent =
+      now.toISOString().split('T')[0];
   }
 
   function calc() {
