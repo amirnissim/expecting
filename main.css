@@ -2,17 +2,33 @@
 body {
   font-family: 'Open Sans', sans-serif;
   font-weight: 300;
-  padding: 15px;
   font-size: 10px;
+  padding: 35px 15px;
+  margin: 0;
+  color: #505050;
 }
 section {
   text-align: center;
+  width: 250px;
+  margin: 0 auto;
 }
 section:first-child {
-  margin-bottom: 50px;
+  /* fixes tapping issues */
+  position: relative;
+  z-index: 1;
+}
+
+#inputDisplay, #targetDisplay {
+  color: #428bca;
+}
+
+#main {
+  margin: 60px auto;
 }
 #output {
   display: block;
+  font-size: 1.3rem;
+  color: black;
 }
 #outputMain {
   display: block;
@@ -22,18 +38,40 @@ section:first-child {
 }
 #outputType {
   display: block;
-  font-weight: 600;
-  font-size: 1.3rem;
 }
 #outputSub {
   display: block;
-  font-weight: 300;
-  font-size: 1rem;
   margin-top: 0.3rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
+}
+
+#footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding-bottom: 30px;
+}
+#progress {
+  position: relative;
+  height: 20px;
+}
+#dueDateLabel {
+  float: left;
 }
 #dueDate {
-  font-size: 0.9rem;
+  float: right;
+}
+#progressBg {
+  bottom: 0;
+  width: 100%;
+  border-bottom: 2px solid #F0F0F0;
+  position: absolute;
+}
+#progressFg {
+  position: absolute;
+  bottom: 0;
+  border-bottom: 2px solid rgb(255, 189, 215);
 }
 
 /* hide ugly input[date] elements on mobile and tablets */
@@ -44,8 +82,9 @@ section:first-child {
 }
 @media screen and (max-width: 768px) {
   input[type="date"] {
+    top: -1000px;
     position: absolute;
-    top: -100px;
+    left: 0;
   }
   .mobile-only {
     display: inline;

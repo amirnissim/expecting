@@ -21,19 +21,24 @@
 
   <section id="main">
     <div id="output">
+      <span id="outputType">WEEK</span>
       <span id="outputMain"></span>
-      <span id="outputType"></span>
       <span id="outputSub"></span>
     </div>
 
-    <div id="dueDate"></div>
+    <label for="targetDate">(on
+      <span id="targetDisplay" class="mobile-only"></span>)
+    </label>
+    <input type="date" id="targetDate">
   </section>
 
   <section id="footer">
-    <label for="targetDate">Target date is
-      <span id="targetDisplay" class="mobile-only"></span>
-    </label>
-    <input type="date" id="targetDate">
+    <div id="progress">
+      <span id="dueDateLabel">due date is</span>
+      <span id="dueDate"></span>
+      <div id="progressBg"></div>
+      <div id="progressFg"></div>
+    </div>
   </section>
 
   <script src="main.js"></script>

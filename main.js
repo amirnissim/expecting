@@ -8,7 +8,10 @@
   var
   now = new Date(),
   oneDayInMs = 24 * 60 * 60 * 1000,
-  pregnancyInWeeks = 40, // weeks
+
+  pregnancyInWeeks = 40,
+  pregnancyInDays = pregnancyInWeeks * 7,
+
   elements = {
     inputDate: $('#inputDate'),
     inputDisplay: $('#inputDisplay'),
@@ -18,9 +21,9 @@
 
     output: $('#output'),
     outputMain: $('#outputMain'),
-    outputType: $('#outputType'),
     outputSub: $('#outputSub'),
-    dueDate: $('#dueDate')
+    dueDate: $('#dueDate'),
+    progressFg: $('#progressFg')
   };
 
   function initDate(input, display) {
@@ -56,19 +59,13 @@
     weeks = parseInt(delta / 7),
     days = delta % 7;
 
-    elements.outputMain.textContent = weeks ? weeks : days;
-    elements.outputType.textContent = weeks ?
-                                      (weeks > 1 ? 'weeks' : 'week') :
-                                      (days > 1 ? 'days' : 'day');
+    elements.outputMain.textContent = weeks;
+    elements.outputSub.textContent =
+      days ? 'AND {#days} DAYS'.replace('{#days}', days) : '';
 
-    elements.outputSub.textContent = '';
-    if (weeks && days) {
-      elements.outputSub.textContent =
-        'and {#days} days'.replace('{#days}', days);
-    }
-
-    elements.dueDate.textContent =
-      '(due date is ' + dueDate.toLocaleDateString() + ')';
+    elements.dueDate.textContent = dueDate.toLocaleDateString();
+    elements.progressFg.style.width =
+      parseInt(delta / pregnancyInDays * 100) + '%';
   }
 
   init();
