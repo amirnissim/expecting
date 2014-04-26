@@ -84,11 +84,13 @@ settings #main .date-desc {
 }
 
 page {
-  display: block;
+  display: flex;
+  flex-direction: column;
   margin: 0;
   height: 100%;
   position: relative;
   box-sizing: border-box;
+  padding-bottom: 30px;
 }
 page #main,
 page #footer {
@@ -98,8 +100,8 @@ page #footer {
 }
 
 page #main {
-  margin: 60px auto;
   padding: 35px 15px;
+  flex: 2;
 }
 #output {
   display: block;
@@ -121,13 +123,6 @@ page #main {
   margin-bottom: 1rem;
 }
 
-#footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding-bottom: 30px;
-}
 #progress {
   position: relative;
   height: 20px;
