@@ -17,7 +17,7 @@ body[data-state="settings"] settings {
   -webkit-transform: translateX(0);
 }
 body[data-state="settings"] page {
-  opacity: 0.2;
+  opacity: 0.1;
 }
 
 [class^="icon-"], [class*=" icon-"] {
@@ -42,7 +42,7 @@ body[data-state="settings"] page {
 
 settings {
   position: absolute;
-  width: 65%;
+  width: 80%;
   height: 100%;
   z-index: 1000;
   background: #f7f7f7;

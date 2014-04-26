@@ -1,9 +1,16 @@
 (function() {
   'use strict';
 
-  function $(s) {return document.querySelector(s);}
-  function openSettings() {document.body.dataset.state = 'settings';}
-  function closeSettings() {delete document.body.dataset.state;}
+  function $(s) {
+    return document.querySelector(s);
+  }
+  function openSettings() {
+    localStorage['state'] = document.body.dataset.state = 'settings';
+  }
+  function closeSettings() {
+    localStorage['state'] = 'page';
+    delete document.body.dataset.state;
+  }
 
   var
   now = new Date(),
@@ -41,7 +48,18 @@
   }
 
   function init() {
-    // open/close settings
+    // state
+    if (!localStorage['state'] || localStorage['state'] === 'settings') {
+      openSettings();
+    }
+
+    elements.inputDate.value = elements.inputDisplay.textContent =
+      localStorage['inputDate'] || '2014-01-05';
+
+    elements.targetDate.value = elements.targetDisplay.textContent =
+      now.toISOString().split('T')[0];
+
+    // settings panel
     elements.openSettings.addEventListener('click', openSettings);
     elements.closeSettings.addEventListener('click', closeSettings);
     document.addEventListener('keydown', function(e) {
@@ -50,14 +68,9 @@
       }
     });
 
+    // date inputs
     initDate(elements.inputDate, elements.inputDisplay);
     initDate(elements.targetDate, elements.targetDisplay);
-
-    elements.inputDate.value = elements.inputDisplay.textContent =
-      localStorage['inputDate'] || '2014-01-05';
-
-    elements.targetDate.value = elements.targetDisplay.textContent =
-      now.toISOString().split('T')[0];
   }
 
   function calc() {
