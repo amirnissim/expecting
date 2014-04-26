@@ -7,39 +7,63 @@
 
   <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
   <link rel="icon" href="favicon.png" type="image/x-icon">
+  <link rel="stylesheet" href="icomoon/style.css">
   <link rel="stylesheet" href="main.css">
 
   <title>Expecting</title>
 </head>
-<body>
-  <section id="pre">
-    <label for="inputDate">Conception
-      <span id="inputDisplay" class="mobile-only"></span>
-    </label>
-    <input type="date" id="inputDate">
-  </section>
+<body data-state="settings">
+  <settings>
+    <section id="head">
+      <span>Customize</span>
+      <span id="closeSettings" class="icon-arrow-left2"></span>
+    </section>
 
-  <section id="main">
-    <div id="output">
-      <span id="outputType">WEEK</span>
-      <span id="outputMain"></span>
-      <span id="outputSub"></span>
-    </div>
+    <section id="main">
+      <div>
+        <label for="inputDate">
+          <span id="inputDisplay" class="mobile-only"></span>
+        </label>
+        <input type="date" id="inputDate">
+        <span class="date-label">Conception date</span>
+        <span class="date-desc">or first day of your last period</span>
+      </div>
 
-    <label for="targetDate">(on
-      <span id="targetDisplay" class="mobile-only"></span>)
-    </label>
-    <input type="date" id="targetDate">
-  </section>
+      <hr>
 
-  <section id="footer">
-    <div id="progress">
-      <span id="dueDateLabel">due date is</span>
-      <span id="dueDate"></span>
-      <div id="progressBg"></div>
-      <div id="progressFg"></div>
-    </div>
-  </section>
+      <div>
+        <label for="targetDate">
+          <span id="targetDisplay" class="mobile-only"></span>
+        </label>
+        <input type="date" id="targetDate">
+        <span class="date-label">Target date</span>
+        <span class="date-desc">default is today</span>
+      </div>
+    </section>
+  </settings>
+
+  <page>
+    <section id="head">
+      <div id="openSettings" class="icon-calendar"></div>
+    </section>
+
+    <section id="main">
+      <div id="output">
+        <span id="outputType">WEEK</span>
+        <span id="outputMain"></span>
+        <span id="outputSub"></span>
+      </div>
+    </section>
+
+    <section id="footer">
+      <div id="progress">
+        <span id="dueDateLabel">due date is</span>
+        <span id="dueDate"></span>
+        <div id="progressBg"></div>
+        <div id="progressFg"></div>
+      </div>
+    </section>
+  </page>
 
   <script src="main.js"></script>
 </body>

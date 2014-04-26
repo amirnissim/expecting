@@ -1,9 +1,9 @@
 (function() {
   'use strict';
 
-  function $(s) {
-    return document.querySelector(s);
-  }
+  function $(s) {return document.querySelector(s);}
+  function openSettings() {document.body.dataset.state = 'settings';}
+  function closeSettings() {delete document.body.dataset.state;}
 
   var
   now = new Date(),
@@ -23,7 +23,10 @@
     outputMain: $('#outputMain'),
     outputSub: $('#outputSub'),
     dueDate: $('#dueDate'),
-    progressFg: $('#progressFg')
+    progressFg: $('#progressFg'),
+
+    openSettings: $('#openSettings'),
+    closeSettings: $('#closeSettings')
   };
 
   function initDate(input, display) {
@@ -38,6 +41,15 @@
   }
 
   function init() {
+    // open/close settings
+    elements.openSettings.addEventListener('click', openSettings);
+    elements.closeSettings.addEventListener('click', closeSettings);
+    document.addEventListener('keydown', function(e) {
+      if (e.keyCode === 27 /* esc */) {
+        closeSettings();
+      }
+    });
+
     initDate(elements.inputDate, elements.inputDisplay);
     initDate(elements.targetDate, elements.targetDisplay);
 

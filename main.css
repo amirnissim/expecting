@@ -1,29 +1,105 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700);
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
 body {
   font-family: 'Open Sans', sans-serif;
   font-weight: 300;
   font-size: 10px;
-  padding: 35px 15px;
-  margin: 0;
   color: #505050;
 }
-section {
-  text-align: center;
-  width: 250px;
-  margin: 0 auto;
+
+body[data-state="settings"] settings {
+  -webkit-transform: translateX(0);
 }
-section:first-child {
-  /* fixes tapping issues */
-  position: relative;
-  z-index: 1;
+body[data-state="settings"] page {
+  opacity: 0.2;
 }
 
+[class^="icon-"], [class*=" icon-"] {
+  font-size: 1.2rem;
+}
+
+#head {
+  padding: 15px;
+}
+
+#openSettings {
+  cursor: pointer;
+}
+#closeSettings {
+  cursor: pointer;
+}
+
+#openSettings:active, #closeSettings:active,
 #inputDisplay, #targetDisplay {
   color: #428bca;
 }
 
-#main {
+settings {
+  position: absolute;
+  width: 65%;
+  height: 100%;
+  z-index: 1000;
+  background: #f7f7f7;
+  -webkit-transform: translateX(-100%);
+  -webkit-transition: 0.3s;
+}
+
+settings #head {
+  text-align: right;
+}
+settings #head span:first-child {
+  float: left;
+  font-size: 1.4rem;
+  position: relative;
+  bottom: 5px;
+}
+
+settings #main {
+  margin-top: 50px;
+  padding: 20px;
+}
+settings #main hr {
+  opacity: 0.3;
+  margin: 35px 0;
+}
+settings #main label {
+  display: block;
+  font-size: 1.1rem;
+}
+settings #main .date-label {
+  display: block;
+  font-weight: bold;
+  font-size: 0.7rem;
+}
+settings #main .date-desc {
+  display: block;
+  font-size: 0.6rem;
+  opacity: 0.75;
+}
+
+page {
+  display: block;
+  margin: 0;
+  height: 100%;
+  position: relative;
+  box-sizing: border-box;
+}
+page #main,
+page #footer {
+  text-align: center;
+  width: 250px;
+  margin: 0 auto;
+}
+
+page #main {
   margin: 60px auto;
+  padding: 35px 15px;
 }
 #output {
   display: block;
