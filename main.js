@@ -13,7 +13,11 @@
   }
 
   var
+  isTouch = 'ontouchstart' in window,
+
   now = new Date(),
+  strToday = now.toISOString().split('T')[0],
+
   oneDayInMs = 24 * 60 * 60 * 1000,
 
   pregnancyInWeeks = 40,
@@ -37,27 +41,34 @@
   };
 
   function initDate(input, display) {
-    display.addEventListener('click', function() {
-      input.focus();
-    });
+    if (isTouch) {
+      display.addEventListener('click', function() {
+        input.focus();
+      });
+    }
 
     input.addEventListener('change', function() {
       display.textContent = localStorage[input.id] = input.value;
+      if (isTouch && input.value === strToday) {
+        display.textContent = 'Today';
+      }
       calc();
     });
   }
 
   function init() {
+    document.body.dataset.isTouch = isTouch;
+
     // state
     if (!localStorage['state'] || localStorage['state'] === 'settings') {
       openSettings();
     }
 
     elements.inputDate.value = elements.inputDisplay.textContent =
-      localStorage['inputDate'] || '2014-01-05';
+      localStorage['inputDate'] || strToday;
 
-    elements.targetDate.value = elements.targetDisplay.textContent =
-      now.toISOString().split('T')[0];
+    elements.targetDate.value = strToday;
+    elements.targetDisplay.textContent = 'Today';
 
     // settings panel
     elements.openSettings.addEventListener('click', openSettings);
@@ -84,9 +95,9 @@
     weeks = parseInt(delta / 7),
     days = delta % 7;
 
-    elements.outputMain.textContent = weeks;
-    elements.outputSub.textContent =
-      days ? 'AND {#days} DAYS'.replace('{#days}', days) : '';
+    elements.outputMain.textContent = weeks || 0;
+    elements.outputSub.textContent = days ?
+      ('AND {#days} ' + (days > 1 ? 'DAYS' : 'DAY')).replace('{#days}', days) : '';
 
     elements.dueDate.textContent = dueDate.toLocaleDateString();
     elements.progressFg.style.width =

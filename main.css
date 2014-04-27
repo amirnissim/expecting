@@ -71,8 +71,7 @@ settings #head span:first-child {
 }
 
 settings #main {
-  margin-top: 50px;
-  padding: 20px;
+  padding: 20px 20px 0;
 }
 settings #main hr {
   opacity: 0.3;
@@ -86,11 +85,13 @@ settings #main .date-label {
   display: block;
   font-weight: bold;
   font-size: 0.8rem;
+  padding-top: 2px;
 }
 settings #main .date-desc {
   display: block;
   font-size: 0.7rem;
   opacity: 0.75;
+  padding-top: 2px;
 }
 
 page {
@@ -102,7 +103,6 @@ page {
   height: 100%;
   position: relative;
   box-sizing: border-box;
-  padding-bottom: 30px;
 }
 
 page #main,
@@ -111,7 +111,10 @@ page #footer {
   width: 250px;
   margin: 0 auto;
 }
-
+page #footer {
+  padding-bottom: 20px;
+  padding-top: 8px;
+}
 page #main {
   display: flex;
   display: -webkit-flex;
@@ -134,11 +137,11 @@ page #main {
 }
 #outputType {
   display: block;
+  margin-bottom: -15px;
 }
 #outputSub {
   display: block;
-  margin-top: 0.3rem;
-  margin-bottom: 1rem;
+  margin-top: -5px;
 }
 
 #dueDateLabel {
@@ -158,19 +161,19 @@ page #main {
   bottom: 2px;;
 }
 
-/* hide ugly input[date] elements on mobile and tablets */
-@media screen and (min-width: 768px) {
-  .mobile-only {
-    display: none;
-  }
+/*  for touch devices:
+ *  show nice UI instead of native input[date] elements
+**/
+#inputDisplay, #targetDisplay {
+  display: none;
 }
-@media screen and (max-width: 768px) {
-  input[type="date"] {
-    top: -1000px;
-    position: absolute;
-    left: 0;
-  }
-  .mobile-only {
-    display: inline;
-  }
+
+body[data-is-touch="true"] #inputDisplay,
+body[data-is-touch="true"] #targetDisplay {
+  display: inline;
+}
+body[data-is-touch="true"] input[type="date"] {
+  top: -1000px;
+  position: absolute;
+  left: 0;
 }
