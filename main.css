@@ -14,6 +14,7 @@ body {
 }
 
 body[data-state="settings"] settings {
+  transform: translateX(0);
   -webkit-transform: translateX(0);
 }
 body[data-state="settings"] page {
@@ -22,6 +23,12 @@ body[data-state="settings"] page {
 
 [class^="icon-"], [class*=" icon-"] {
   font-size: 1.2rem;
+}
+
+.group:after {
+  content: "";
+  clear: both;
+  display: table;
 }
 
 #head {
@@ -46,7 +53,9 @@ settings {
   height: 100%;
   z-index: 1000;
   background: #f7f7f7;
+  transform: translateX(-100%);
   -webkit-transform: translateX(-100%);
+  transition: 0.3s;
   -webkit-transition: 0.3s;
 }
 
@@ -85,13 +94,16 @@ settings #main .date-desc {
 
 page {
   display: flex;
+  display: -webkit-flex;
   flex-direction: column;
+  -webkit-flex-direction: column;
   margin: 0;
   height: 100%;
   position: relative;
   box-sizing: border-box;
   padding-bottom: 30px;
 }
+
 page #main,
 page #footer {
   text-align: center;
@@ -100,10 +112,15 @@ page #footer {
 }
 
 page #main {
-  padding: 35px 15px;
+  display: flex;
+  display: -webkit-flex;
+  align-items: center;
+  -webkit-align-items: center;
   flex: 2;
+  -webkit-flex: 2;
 }
 #output {
+  margin: 0 auto;
   display: block;
   font-size: 1.3rem;
   color: black;
@@ -123,26 +140,21 @@ page #main {
   margin-bottom: 1rem;
 }
 
-#progress {
-  position: relative;
-  height: 20px;
-}
 #dueDateLabel {
   float: left;
+  padding-bottom: 5px;
 }
 #dueDate {
   float: right;
 }
 #progressBg {
-  bottom: 0;
   width: 100%;
   border-bottom: 2px solid #F0F0F0;
-  position: absolute;
 }
 #progressFg {
-  position: absolute;
-  bottom: 0;
   border-bottom: 2px solid rgb(255, 189, 215);
+  position: relative;
+  bottom: 2px;;
 }
 
 /* hide ugly input[date] elements on mobile and tablets */
