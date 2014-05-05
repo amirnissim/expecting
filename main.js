@@ -11,12 +11,22 @@
     localStorage['state'] = 'page';
     delete document.body.dataset.state;
   }
+  function dateFormat(d) {
+    if (!d) {
+      return d;
+    }
+
+    if (!(d instanceof Date)) {
+      d = new Date(parseInt(d));
+    }
+    return d.toISOString().split('T')[0];
+  }
 
   var
   isTouch = 'ontouchstart' in window,
 
   now = new Date(),
-  strToday = now.toISOString().split('T')[0],
+  strToday = dateFormat(now),
 
   oneDayInMs = 24 * 60 * 60 * 1000,
 
@@ -64,9 +74,12 @@
       openSettings();
     }
 
+    // input date: use location.search or localStorage else today
+    var iDate = dateFormat((/i=(\d+)/.exec(location.search)||[])[1]);
     elements.inputDate.value = elements.inputDisplay.textContent =
-      localStorage['inputDate'] || strToday;
+      iDate || localStorage['inputDate'] || strToday;
 
+    // target date: use today
     elements.targetDate.value = strToday;
     elements.targetDisplay.textContent = 'Today';
 
@@ -97,7 +110,7 @@
 
     elements.outputMain.textContent = weeks || 0;
     elements.outputSub.textContent = days ?
-      ('AND {#days} ' + (days > 1 ? 'DAYS' : 'DAY')).replace('{#days}', days) : '';
+      ('+ {#days} ' + (days > 1 ? 'DAYS' : 'DAY')).replace('{#days}', days) : '';
 
     elements.dueDate.textContent = dueDate.toLocaleDateString();
     elements.progressFg.style.width =

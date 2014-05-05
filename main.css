@@ -138,6 +138,7 @@ page #main {
 #outputType {
   display: block;
   margin-bottom: -15px;
+  font-weight: 700;
 }
 #outputSub {
   display: block;
