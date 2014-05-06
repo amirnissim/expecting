@@ -24,6 +24,7 @@
 
   var
   isTouch = 'ontouchstart' in window,
+  click = isTouch ? 'touchend' : 'click',
 
   now = new Date(),
   strToday = dateFormat(now),
@@ -52,7 +53,7 @@
 
   function initDate(input, display) {
     if (isTouch) {
-      display.addEventListener('click', function() {
+      display.addEventListener(click, function() {
         input.focus();
       });
     }
@@ -84,8 +85,8 @@
     elements.targetDisplay.textContent = 'Today';
 
     // settings panel
-    elements.openSettings.addEventListener('click', openSettings);
-    elements.closeSettings.addEventListener('click', closeSettings);
+    elements.openSettings.addEventListener(click, openSettings);
+    elements.closeSettings.addEventListener(click, closeSettings);
     document.addEventListener('keydown', function(e) {
       if (e.keyCode === 27 /* esc */) {
         closeSettings();
