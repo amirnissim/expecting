@@ -35,11 +35,17 @@ body[data-state="settings"] page {
   padding: 15px;
 }
 
-#openSettings {
-  cursor: pointer;
-}
+#openSettings,
 #closeSettings {
   cursor: pointer;
+  padding: 15px;
+  position: relative;
+}
+#openSettings {
+  right: 15px;
+}
+#closeSettings {
+  left: 15px;
 }
 
 #openSettings:active, #closeSettings:active,
